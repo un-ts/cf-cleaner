@@ -2,7 +2,7 @@
 
 [![GitHub Actions](https://github.com/rx-ts/cf-cleaner/workflows/CI/badge.svg)](https://github.com/rx-ts/cf-cleaner/actions/workflows/ci.yml)
 [![Codecov](https://img.shields.io/codecov/c/github/rx-ts/cf-cleaner.svg)](https://codecov.io/gh/rx-ts/cf-cleaner)
-[![Codacy Grade](https://img.shields.io/codacy/grade/5f6d6b90f972435393fb8c2eb49deafc)](https://www.codacy.com/gh/rx-ts/cf-cleaner)
+[![Codacy Grade](https://img.shields.io/codacy/grade/cd5444616bd74d239bead24def4b9e72)](https://www.codacy.com/gh/rx-ts/cf-cleaner)
 [![type-coverage](https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Frx-ts%2Fcf-cleaner%2Fmain%2Fpackage.json)](https://github.com/plantain-00/type-coverage)
 [![npm](https://img.shields.io/npm/v/cf-cleaner.svg)](https://www.npmjs.com/package/cf-cleaner)
 [![GitHub Release](https://img.shields.io/github/release/rx-ts/cf-cleaner)](https://github.com/rx-ts/cf-cleaner/releases)
