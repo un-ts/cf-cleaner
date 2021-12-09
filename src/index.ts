@@ -6,7 +6,7 @@ import { unified } from 'unified'
 import type { MinimalDuplex } from 'unified-stream'
 import { stream } from 'unified-stream'
 
-import { rehypeConfluence } from './rehype-confluence'
+import { rehypeConfluence } from './rehype-confluence.js'
 
 const getProcessor = (minify?: boolean | undefined) => {
   let processor = unified()
