@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { URL } from 'url'
 
-import { cf2md } from 'cf2md'
+import { cleaner } from 'cf-cleaner'
 
 describe('fixtures', () => {
   const __dirname = path.dirname(new URL(import.meta.url).pathname)
@@ -10,7 +10,7 @@ describe('fixtures', () => {
   const fixturesDir = path.join(__dirname, 'fixtures')
   const fixtures = fs.readdirSync(fixturesDir)
   for (const fixture of fixtures) {
-    if (!fixture.endsWith('.html')) {
+    if (fixture.endsWith('.output.html') || fixture.endsWith('.min.html')) {
       continue
     }
 
@@ -18,15 +18,26 @@ describe('fixtures', () => {
 
     it(`${fixture} should work as expected`, async () => {
       const input = await fs.promises.readFile(fixtureFile, 'utf8')
-      const output = await cf2md(input)
+      const output = await cleaner(input)
       expect(output).toMatchSnapshot()
     })
 
     it(`${fixture} stream should work as expected`, () => {
       const input = fs.createReadStream(fixtureFile)
-      const output = cf2md(input)
+      const output = cleaner(input)
       expect(output).toBeTruthy()
-      output.pipe(fs.createWriteStream(fixtureFile.replace(/\.html$/, '.md')))
+      output.pipe(
+        fs.createWriteStream(fixtureFile.replace(/\.html$/, '.output.html')),
+      )
+    })
+
+    it(`${fixture} stream minify should work as expected`, () => {
+      const input = fs.createReadStream(fixtureFile)
+      const output = cleaner(input, true)
+      expect(output).toBeTruthy()
+      output.pipe(
+        fs.createWriteStream(fixtureFile.replace(/\.html$/, '.min.html')),
+      )
     })
   }
 })

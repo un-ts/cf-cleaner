@@ -1,156 +1,152 @@
-import type { Content, Element } from 'hast'
-import { isElement } from 'hast-util-is-element'
-import type { Paragraph, Strong, Text } from 'mdast'
-import type { BlockContent, ContainerDirective } from 'mdast-util-directive'
+import { URL } from 'url'
+
+import type { Element, Root } from 'hast'
+import rehypeFormat from 'rehype-format'
 import rehypeParse from 'rehype-parse'
-import rehypeRemark, { all, defaultHandlers } from 'rehype-remark'
-import remarkDirective from 'remark-directive'
-import remarkGfm from 'remark-gfm'
-import remarkStringify from 'remark-stringify'
+import rehypePresetMinify from 'rehype-preset-minify'
+import rehypeStringify from 'rehype-stringify'
 import { unified } from 'unified'
 import type { MinimalDuplex } from 'unified-stream'
 import { stream } from 'unified-stream'
+import { remove } from 'unist-util-remove'
+import { visit } from 'unist-util-visit'
 
-const getClassList = (node: Element) =>
-  node.properties?.className as string[] | undefined
+const CLASSNAME_MAPPER = {
+  'toc-macro': 'toc',
+  'hide-toolbar': 'expandable',
+  'confluence-information-macro': 'alert',
+  code: 'code',
+  panel: 'panel',
+  panelHeader: 'panel-header',
+  panelContent: 'panel-content',
+  confluenceTd: 'border-td',
+  confluenceTh: 'border-th',
+}
 
-const processor = unified()
-  .use(rehypeParse, { fragment: true })
-  .use(remarkDirective)
-  .use(remarkGfm)
-  .use(rehypeRemark, {
-    handlers: {
-      br(h, node: Content) {
-        return h(node, 'html', '<br>')
-      },
-      div(h, node: Element) {
-        const classList = getClassList(node)
+// eslint-disable-next-line sonarjs/cognitive-complexity
+export const rehypeConfluence = () => (root: Root) => {
+  remove(
+    root,
+    node =>
+      node.type === 'element' &&
+      (['style', 'script'].includes(node.tagName) ||
+        (node.properties?.className as string[] | undefined)?.some(className =>
+          ['aui-icon', 'hide-border-bottom', 'hidden'].includes(className),
+        )),
+  )
 
-        if (
-          // ignore toc
-          classList?.includes('toc-macro') ||
-          // ignore code block header
-          classList?.includes('codeHeader')
-        ) {
-          return
+  remove(root, node => {
+    if (node.type === 'element' && node.tagName === 'p') {
+      return node.children.every(item => {
+        if (item.type === 'text') {
+          return !item.value.trim()
         }
 
-        const nodes = all(h, node)
+        return false
+      })
+    }
+  })
 
-        if (classList?.includes('confluence-information-macro')) {
-          let type: string | undefined
-          for (const className of classList) {
-            const matched = /confluence-information-macro-(.*)/.exec(className)
-            if (matched) {
-              type = matched[1]
-              break
-            }
-          }
-          if (type) {
-            const alert: ContainerDirective = {
-              type: 'containerDirective',
-              name: 'alert',
-              attributes: {
-                type,
-              },
-              children: nodes as BlockContent[],
-            }
-            return alert
-          }
-        }
-
-        if (classList?.includes('panel') && !classList.includes('code')) {
-          const panelTitle = nodes.find(
-            (node): node is Strong => node.type === 'strong',
-          )
-          const panel: ContainerDirective = {
-            type: 'containerDirective',
-            name: 'panel',
-            attributes: panelTitle && {
-              title: panelTitle.children.find(
-                (node): node is Text => node.type === 'text',
-              )!.value,
-            },
-            children: nodes.filter(
-              (node): node is Paragraph => node.type === 'paragraph',
-            ),
-          }
-          return panel
-        }
-
-        return nodes
-      },
-      pre(h, node: Element, parent) {
-        const params = node.properties?.dataSyntaxhighlighterParams ?? ''
-        const matched = /brush:\s*([^;]+);/.exec(params as string)
-        const lang = matched?.[1]
-        const classList = getClassList(node)
-
-        const properties = {
-          className: lang && [...(classList ?? []), 'language-' + lang],
-        }
-
-        let expandable = false
-
-        if (isElement(parent)) {
-          const parentClassList = getClassList(parent as Element)
-          if (parentClassList?.includes('hide-toolbar')) {
-            expandable = true
-          }
-        }
-
-        const codeNode = defaultHandlers.pre(h, {
-          ...node,
-          children: node.children.map(child =>
-            child.type === 'text'
-              ? {
-                  type: 'element',
-                  tagName: 'code',
-                  children: [child],
-                  properties,
+  visit(
+    root,
+    node => node.type === 'element' && !!(node as Element).properties,
+    _el => {
+      const properties = (_el as Element).properties!
+      for (const key of Object.keys(properties)) {
+        switch (key) {
+          case 'className': {
+            const className = properties.className as string[]
+            properties.className = className
+              // eslint-disable-next-line array-callback-return
+              .map(name => {
+                if (name in CLASSNAME_MAPPER) {
+                  return CLASSNAME_MAPPER[name as keyof typeof CLASSNAME_MAPPER]
                 }
-              : {
-                  ...child,
-                  properties: {
-                    ...('properties' in child && child.properties),
-                    ...properties,
-                  },
-                },
-          ),
-        })
 
-        return codeNode && expandable
-          ? {
-              ...codeNode,
-              meta: 'expandable',
+                if (name.startsWith('confluence-information-macro-')) {
+                  return name.replace('confluence-information-macro-', 'alert-')
+                }
+              })
+              .filter(Boolean) as string[]
+            if (properties.className.length === 0) {
+              delete properties.className
             }
-          : codeNode
-      },
-      strong(h, node: Element) {
-        const strongNode = defaultHandlers.strong(h, node) as Strong
-        for (const child of strongNode.children) {
-          if (child.type === 'text') {
-            child.value = child.value.trim()
+            if (properties.style) {
+              delete properties.style
+            }
+            break
+          }
+          case 'dataSyntaxhighlighterParams': {
+            const params = properties[key] as string
+            const matched = /brush:\s*([^;]+);/.exec(params)
+            const lang = matched?.[1]
+            if (lang) {
+              properties.className = ['language-' + lang]
+            }
+            delete properties[key]
+            break
+          }
+          case 'href': {
+            const href = properties.href as string
+            const url = new URL(href)
+            const matched = /\?pageId=(\d+)/.exec(url.search)
+            if (matched) {
+              properties.href = '/knowledge/' + matched[1] + url.hash
+            }
+            break
+          }
+          default: {
+            if (key.startsWith('data')) {
+              delete properties[key]
+            }
           }
         }
-        return strongNode
-      },
+      }
     },
-  })
-  .use(remarkStringify, {
-    fences: true,
-  })
-  .freeze()
+  )
+}
 
-export function cf2md(
+const getProcessor = (minify?: boolean | undefined) => {
+  let processor = unified()
+    .use(rehypeParse, { fragment: true })
+    .use(rehypeConfluence)
+
+  processor = minify
+    ? processor.use(rehypePresetMinify)
+    : processor.use(rehypeFormat)
+
+  return processor.use(rehypeStringify).freeze()
+}
+
+export function cleaner(
   input: string,
   encoding?: BufferEncoding | undefined,
 ): Promise<string>
-export function cf2md(input: NodeJS.ReadableStream): MinimalDuplex
-export function cf2md(
+export function cleaner(
+  input: string,
+  minify?: boolean | undefined,
+  encoding?: BufferEncoding | undefined,
+): Promise<string>
+export function cleaner(
+  input: NodeJS.ReadableStream,
+  minify?: boolean | undefined,
+): MinimalDuplex
+export function cleaner(
   input: NodeJS.ReadableStream | string,
+  minifyOrEncoding?: BufferEncoding | boolean | undefined,
   encoding?: BufferEncoding | undefined,
 ) {
+  let minify: boolean | undefined
+
+  if (typeof minifyOrEncoding === 'boolean') {
+    minify = minifyOrEncoding
+  } else {
+    minify = undefined
+    encoding = minifyOrEncoding
+  }
+
+  const processor = getProcessor(minify)
+
   if (typeof input === 'string') {
     return processor.process(input).then(vfile => vfile.toString(encoding))
   }
