@@ -19,7 +19,8 @@
       "import": "./lib/index.js",
       "require": "./lib/index.cjs"
     },
-    "./lib/rehype-confluence": "./lib/rehype-confluence.js"
+    "./lib/rehype-confluence": "./lib/rehype-confluence.js",
+    "./lib/rehype-confluence.js": "./lib/rehype-confluence.js"
   },
   "types": "lib",
   "files": [

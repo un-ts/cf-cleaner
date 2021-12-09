@@ -37,8 +37,8 @@
       <li><strong>添加告警规则</strong>，并设置 <strong>告警规则 </strong>相关参数：<br>
         <ul>
           <li><strong>告警类型</strong> 选择 <strong>自定义告警。</strong></li>
-          <li>参考 <a href="/knowledge/91240377#id-%E5%A6%82%E4%BD%95%E4%B8%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E7%BD%AE%E6%B5%81%E9%87%8F%E5%91%8A%E8%AD%A6-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%A8%E8%BE%BE%E5%BC%8F" rel="nofollow">自定义表达式</a>，输入监控指标 <strong>表达式。提示：</strong>请根据实际数据替换变量值。</li>
-          <li>参考 <a href="/knowledge/91240377#id-%E5%A6%82%E4%BD%95%E4%B8%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E7%BD%AE%E6%B5%81%E9%87%8F%E5%91%8A%E8%AD%A6-%E5%91%8A%E8%AD%A6%E6%8C%87%E6%A0%87%E8%AF%B4%E6%98%8E" rel="nofollow">告警指标参数</a>，设置 <strong>单位</strong>、<strong>触发条件。</strong><br><span><img height="330" width="450" src="http://confluence.alauda.cn/download/attachments/89074369/image2021-5-26_14-41-13.png?version=1&#x26;modificationDate=1621982474000&#x26;api=v2"></span></li>
+          <li>参考 <a href="http://confluence.alauda.cn/pages/viewpage.action?pageId=91240377#id-%E5%A6%82%E4%BD%95%E4%B8%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E7%BD%AE%E6%B5%81%E9%87%8F%E5%91%8A%E8%AD%A6-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%A8%E8%BE%BE%E5%BC%8F" rel="nofollow">自定义表达式</a>，输入监控指标 <strong>表达式。提示：</strong>请根据实际数据替换变量值。</li>
+          <li>参考 <a href="http://confluence.alauda.cn/pages/viewpage.action?pageId=91240377#id-%E5%A6%82%E4%BD%95%E4%B8%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E7%BD%AE%E6%B5%81%E9%87%8F%E5%91%8A%E8%AD%A6-%E5%91%8A%E8%AD%A6%E6%8C%87%E6%A0%87%E8%AF%B4%E6%98%8E" rel="nofollow">告警指标参数</a>，设置 <strong>单位</strong>、<strong>触发条件。</strong><br><span><img height="330" width="450" src="http://confluence.alauda.cn/download/attachments/89074369/image2021-5-26_14-41-13.png?version=1&#x26;modificationDate=1621982474000&#x26;api=v2"></span></li>
         </ul>
       </li>
       <li>（可选）选择运维中心已添加的 <strong>通知策略</strong>。</li>
@@ -140,7 +140,6 @@ histogram_quantile({tp-value}, sum(rate(http_server_requests_seconds_bucket{clie
         <td colspan="1" class="border-td"><span style="color: rgb(23,43,77);">TP50 响应时间</span></td>
         <td colspan="1" class="border-td"><span style="color: rgb(23,43,77);">将某个时间段内请求按照响应时间从小到大排列，第 (请求总数*50%) 次请求的响应时间即为 TP50 响应时间。</span></td>
         <td rowspan="3" class="border-td">
-          <p><br></p>
           <ul>
             <li><span style="color: rgb(23,43,77);">正数</span></li>
             <li><span style="color: rgb(23,43,77);">整数部分 7 位</span></li>
@@ -148,26 +147,15 @@ histogram_quantile({tp-value}, sum(rate(http_server_requests_seconds_bucket{clie
           </ul>
         </td>
         <td rowspan="3" class="border-td">
-          <p><br></p>
-          <p><br></p>
           <p>毫秒（ms）<br><br></p>
         </td>
         <td rowspan="5" class="border-td">
-          <p><br></p>
-          <p><br></p>
-          <p><br></p>
           <p><span style="color: rgb(23,43,77);">1分钟...、30分钟</span></p>
         </td>
         <td rowspan="5" class="border-td">
-          <p><br></p>
-          <p><br></p>
-          <p><br></p>
           <p>1-10 个周期</p>
         </td>
         <td rowspan="5" class="border-td">
-          <p><br></p>
-          <p><br></p>
-          <p><br></p>
           <ul>
             <li><span style="color: rgb(23,43,77);">灾难</span></li>
             <li><span style="color: rgb(23,43,77);">严重</span></li>
