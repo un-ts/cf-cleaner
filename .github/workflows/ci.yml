@@ -44,7 +44,7 @@ jobs:
         run: |
           pnpm add --global codecov codacy-coverage
           codecov
-          cat ./coverage/lcov.info | codacy-coverage -u rx-ts -n cf2md
+          cat ./coverage/lcov.info | codacy-coverage -u rx-ts -n cf-cleaner
         env:
           CI: 'true'
           CODACY_ACCOUNT_TOKEN: ${{ secrets.CODACY_ACCOUNT_TOKEN }}

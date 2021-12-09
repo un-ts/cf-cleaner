@@ -7,7 +7,7 @@ const config: Config.InitialOptions = {
   extensionsToTreatAsEsm: ['.ts'],
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
-    '^cf2md$': '<rootDir>/src',
+    '^cf-cleaner$': '<rootDir>/src',
   },
   globals: {
     'ts-jest': {

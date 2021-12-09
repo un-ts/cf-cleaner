@@ -1,6 +1,7 @@
 {
   "extends": "@1stg",
   "rules": {
-    "@typescript-eslint/consistent-type-imports": 2
+    "@typescript-eslint/consistent-type-imports": 2,
+    "sonar/no-redundant-optional": 0
   }
 }

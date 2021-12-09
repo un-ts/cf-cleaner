@@ -7,16 +7,17 @@ import { URL } from 'url'
 
 import { program } from 'commander'
 
-import { cf2md } from './index.js'
+import { cleaner } from './index.js'
 
-export interface Cf2MdOptions {
+export interface CfCleanerOptions {
   input?: string
   output?: string
+  minify?: boolean
 }
 
 const __dirname = new URL('.', import.meta.url).pathname
 
-const { input, output } = program
+const { input, output, minify } = program
   .version(
     (
       JSON.parse(
@@ -28,9 +29,10 @@ const { input, output } = program
   )
   .argument('[input]', 'Input HTML codes')
   .option('-i, --input <path>', 'Input HTML file')
-  .option('-o, --output <path>', 'Output Markdown file')
+  .option('-o, --output <path>', 'Output HTML file')
+  .option('-m, --minify [boolean]', 'Whether to minify HTML output')
   .parse(process.argv)
-  .opts<Cf2MdOptions>()
+  .opts<CfCleanerOptions>()
 
 let inputStream = input
   ? fs.createReadStream(input)
@@ -47,4 +49,6 @@ if (process.stdin.isTTY || process.env.STDIN === '0') {
   inputStream = process.stdin
 }
 
-cf2md(inputStream).pipe(output ? fs.createWriteStream(output) : process.stdout)
+cleaner(inputStream, minify).pipe(
+  output ? fs.createWriteStream(output) : process.stdout,
+)

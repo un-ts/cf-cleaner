@@ -3,7 +3,7 @@
   "changelog": [
     "@changesets/changelog-github",
     {
-      "repo": "rx-ts/cf2md"
+      "repo": "rx-ts/cf-cleaner"
     }
   ],
   "commit": false,

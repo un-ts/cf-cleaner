@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "cf2md": ["src"]
+      "cf-cleaner": ["src"]
     }
   }
 }
