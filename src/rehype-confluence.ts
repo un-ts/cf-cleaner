@@ -1,4 +1,5 @@
 import type { Element, Root } from 'hast'
+import { isElement } from 'hast-util-is-element'
 import { remove } from 'unist-util-remove'
 import { visit } from 'unist-util-visit'
 
@@ -19,7 +20,7 @@ export const rehypeConfluence = () => (root: Root) => {
   remove(
     root,
     node =>
-      node.type === 'element' &&
+      isElement(node) &&
       (['style', 'script'].includes(node.tagName) ||
         (node.properties?.className as string[] | undefined)?.some(className =>
           ['aui-icon', 'hide-border-bottom', 'hidden'].includes(className),
@@ -27,22 +28,22 @@ export const rehypeConfluence = () => (root: Root) => {
   )
 
   remove(root, node => {
-    if (node.type === 'element' && node.tagName === 'p') {
+    if (isElement(node, 'p')) {
       return node.children.every(item => {
         if (item.type === 'text') {
           return !item.value.trim()
         }
 
-        return item.type === 'element' && item.tagName === 'br'
+        return isElement(item, 'br')
       })
     }
   })
 
   visit(
     root,
-    node => node.type === 'element' && !!(node as Element).properties,
-    _el => {
-      const properties = (_el as Element).properties!
+    node => isElement(node) && !!node.properties,
+    el => {
+      const properties = (el as Element).properties!
       for (const key of Object.keys(properties)) {
         switch (key) {
           case 'className': {
