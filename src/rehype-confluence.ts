@@ -79,7 +79,7 @@ export const rehypeConfluence = () => (root: Root) => {
             break
           }
           default: {
-            if (key.startsWith('data')) {
+            if (key.startsWith('data') || key.startsWith('confluence')) {
               delete properties[key]
             }
           }
