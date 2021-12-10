@@ -1,5 +1,11 @@
 # cf-cleaner
 
+## 0.0.4
+
+### Patch Changes
+
+- [#8](https://github.com/rx-ts/cf-cleaner/pull/8) [`ede0b4a`](https://github.com/rx-ts/cf-cleaner/commit/ede0b4a464174ead9bf840cd1c315388d6292af2) Thanks [@zChanges](https://github.com/zChanges)! - fix: remove-cf-empty-toc
+
 ## 0.0.3
 
 ### Patch Changes
