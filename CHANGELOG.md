@@ -1,5 +1,11 @@
 # cf-cleaner
 
+## 0.0.3
+
+### Patch Changes
+
+- [#6](https://github.com/rx-ts/cf-cleaner/pull/6) [`bf2ce0c`](https://github.com/rx-ts/cf-cleaner/commit/bf2ce0c1884645f096bf80f4fdad1c9af0a6fe24) Thanks [@zChanges](https://github.com/zChanges)! - fix: remove cf attr
+
 ## 0.0.2
 
 ### Patch Changes
