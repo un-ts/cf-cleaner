@@ -23,7 +23,12 @@ export const rehypeConfluence = () => (root: Root) => {
       isElement(node) &&
       (['style', 'script'].includes(node.tagName) ||
         (node.properties?.className as string[] | undefined)?.some(className =>
-          ['aui-icon', 'hide-border-bottom', 'hidden'].includes(className),
+          [
+            'aui-icon',
+            'hide-border-bottom',
+            'hidden',
+            'toc-empty-item',
+          ].includes(className),
         )),
   )
 
