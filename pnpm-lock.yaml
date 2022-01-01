@@ -4,7 +4,7 @@ specifiers:
   '@1stg/lib-config': ^4.1.2
   '@changesets/changelog-github': ^0.4.2
   '@changesets/cli': ^2.19.0
-  '@types/jest': ^27.0.3
+  '@types/jest': ^27.4.0
   '@types/node': ^16.11.12
   commander: ^8.3.0
   hast-util-is-element: ^2.1.2
@@ -36,9 +36,9 @@ devDependencies:
   '@1stg/lib-config': 4.1.2_typescript@4.5.4
   '@changesets/changelog-github': 0.4.2
   '@changesets/cli': 2.19.0
-  '@types/jest': 27.0.3
+  '@types/jest': 27.4.0
   '@types/node': 16.11.12
-  ts-jest: 27.1.2_f8371b00025709d0ba19d3eaedf64151
+  ts-jest: 27.1.2_e1b00b9b25fe6fba703deb0ebd16089e
   type-coverage: 2.19.0_typescript@4.5.4
   typescript: 4.5.4
 
@@ -2943,8 +2943,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jest/27.0.3:
-    resolution: {integrity: sha512-cmmwv9t7gBYt7hNKH5Spu7Kuu/DotGa+Ff+JGRKZ4db5eh8PnKS4LuebJ3YLUoyOyIHraTGyULn23YtEAm0VSg==}
+  /@types/jest/27.4.0:
+    resolution: {integrity: sha512-gHl8XuC1RZ8H2j5sHv/JqsaxXkDDM9iDOgu0Wp8sjs4u/snb2PVehyWXJPr+ORA0RPpgw231mnutWI1+0hgjIQ==}
     dependencies:
       jest-diff: 27.4.2
       pretty-format: 27.4.2
@@ -10906,7 +10906,7 @@ packages:
     resolution: {integrity: sha512-FnHq5sTMxC0sk957wHDzRnemFnNBvt/gSY99HzK8F7UP5WAbvP70yX5bd7CjEQkN+TjdxwI7g7lJ6podqrG2/w==}
     dev: false
 
-  /ts-jest/27.1.2_f8371b00025709d0ba19d3eaedf64151:
+  /ts-jest/27.1.2_e1b00b9b25fe6fba703deb0ebd16089e:
     resolution: {integrity: sha512-eSOiJOWq6Hhs6Khzk5wKC5sgWIXgXqOCiIl1+3lfnearu58Hj4QpE5tUhQcA3xtZrELbcvAGCsd6HB8OsaVaTA==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     hasBin: true
@@ -10927,7 +10927,7 @@ packages:
       esbuild:
         optional: true
     dependencies:
-      '@types/jest': 27.0.3
+      '@types/jest': 27.4.0
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       jest-util: 27.4.2
