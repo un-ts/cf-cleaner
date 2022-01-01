@@ -12,7 +12,7 @@ specifiers:
   rehype-parse: ^8.0.3
   rehype-preset-minify: ^6.0.0
   rehype-stringify: ^9.0.2
-  ts-jest: ^27.1.1
+  ts-jest: ^27.1.2
   type-coverage: ^2.19.0
   typescript: ^4.5.2
   unified: ^10.1.1
@@ -38,7 +38,7 @@ devDependencies:
   '@changesets/cli': 2.18.1
   '@types/jest': 27.0.3
   '@types/node': 16.11.12
-  ts-jest: 27.1.1_09b7e9df654b7428f04c4f9c49755fb3
+  ts-jest: 27.1.2_09b7e9df654b7428f04c4f9c49755fb3
   type-coverage: 2.19.0_typescript@4.5.2
   typescript: 4.5.2
 
@@ -10903,8 +10903,8 @@ packages:
     resolution: {integrity: sha512-FnHq5sTMxC0sk957wHDzRnemFnNBvt/gSY99HzK8F7UP5WAbvP70yX5bd7CjEQkN+TjdxwI7g7lJ6podqrG2/w==}
     dev: false
 
-  /ts-jest/27.1.1_09b7e9df654b7428f04c4f9c49755fb3:
-    resolution: {integrity: sha512-Ds0VkB+cB+8g2JUmP/GKWndeZcCKrbe6jzolGrVWdqVUFByY/2KDHqxJ7yBSon7hDB1TA4PXxjfZ+JjzJisvgA==}
+  /ts-jest/27.1.2_09b7e9df654b7428f04c4f9c49755fb3:
+    resolution: {integrity: sha512-eSOiJOWq6Hhs6Khzk5wKC5sgWIXgXqOCiIl1+3lfnearu58Hj4QpE5tUhQcA3xtZrELbcvAGCsd6HB8OsaVaTA==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     hasBin: true
     peerDependencies:
