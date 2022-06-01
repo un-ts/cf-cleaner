@@ -15,7 +15,7 @@ specifiers:
   ts-jest: ^27.1.4
   type-coverage: ^2.19.0
   typescript: ^4.5.5
-  unified: ^10.1.1
+  unified: ^10.1.2
   unified-stream: ^2.0.0
   unist-util-remove: ^3.1.0
   unist-util-visit: ^4.1.0
@@ -27,7 +27,7 @@ dependencies:
   rehype-parse: 8.0.3
   rehype-preset-minify: 6.0.0
   rehype-stringify: 9.0.2
-  unified: 10.1.1
+  unified: 10.1.2
   unified-stream: 2.0.0
   unist-util-remove: 3.1.0
   unist-util-visit: 4.1.0
@@ -108,6 +108,7 @@ packages:
       tslib: 2.3.1
       yarn-deduplicate: 3.1.0
     transitivePeerDependencies:
+      - eslint-import-resolver-webpack
       - jest
       - lerna
       - markuplint
@@ -141,7 +142,7 @@ packages:
       eslint-formatter-friendly: 7.0.0
       eslint-import-resolver-typescript: 2.5.0_a820dc868cc8cd66d8297be6779b9035
       eslint-plugin-eslint-comments: 3.2.0_eslint@7.32.0
-      eslint-plugin-import: 2.25.3_eslint@7.32.0
+      eslint-plugin-import: 2.25.3_6e5a0ae109fa60d42ced239ed78f4f8c
       eslint-plugin-jest: 25.3.0_761f1f7d04e47250dd10440d6d743e68
       eslint-plugin-jsdoc: 36.1.1_eslint@7.32.0
       eslint-plugin-markup: 0.7.1_eslint@7.32.0
@@ -159,6 +160,7 @@ packages:
       eslint-plugin-vue: 7.20.0_eslint@7.32.0
     transitivePeerDependencies:
       - '@babel/core'
+      - eslint-import-resolver-webpack
       - jest
       - prettier
       - supports-color
@@ -177,9 +179,9 @@ packages:
     transitivePeerDependencies:
       - '@types/babel__core'
       - '@vue/compiler-sfc'
-      - acorn
       - bufferutil
       - canvas
+      - eslint-import-resolver-webpack
       - lerna
       - markuplint
       - node-notifier
@@ -677,6 +679,8 @@ packages:
     resolution: {integrity: sha512-6V0qdPUaiVHH3RtZeLIsc+6pDhbYzHR8ogA8w+f+Wc77DuXto19g2QUwveINoS34Uw+W8/hQDGJCx+i4n7xcng==}
     engines: {node: '>=6.0.0'}
     hasBin: true
+    dependencies:
+      '@babel/types': 7.16.0
     dev: true
 
   /@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression/7.16.2_@babel+core@7.16.0:
@@ -2683,7 +2687,6 @@ packages:
     transitivePeerDependencies:
       - '@types/babel__core'
       - '@vue/compiler-sfc'
-      - acorn
       - supports-color
       - ts-node
     dev: true
@@ -4527,12 +4530,22 @@ packages:
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     dependencies:
       ms: 2.0.0
     dev: true
 
   /debug/3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     dependencies:
       ms: 2.1.3
     dev: true
@@ -5057,7 +5070,7 @@ packages:
       eslint-plugin-promise: ^4.2.1 || ^5.0.0
     dependencies:
       eslint: 7.32.0
-      eslint-plugin-import: 2.25.3_eslint@7.32.0
+      eslint-plugin-import: 2.25.3_6e5a0ae109fa60d42ced239ed78f4f8c
       eslint-plugin-node: 11.1.0_eslint@7.32.0
       eslint-plugin-promise: 5.2.0_eslint@7.32.0
     dev: true
@@ -5078,6 +5091,8 @@ packages:
     dependencies:
       debug: 3.2.7
       resolve: 1.20.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /eslint-import-resolver-typescript/2.5.0_a820dc868cc8cd66d8297be6779b9035:
@@ -5089,7 +5104,7 @@ packages:
     dependencies:
       debug: 4.3.3
       eslint: 7.32.0
-      eslint-plugin-import: 2.25.3_eslint@7.32.0
+      eslint-plugin-import: 2.25.3_6e5a0ae109fa60d42ced239ed78f4f8c
       glob: 7.2.0
       is-glob: 4.0.3
       resolve: 1.20.0
@@ -5115,13 +5130,32 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-module-utils/2.7.1:
+  /eslint-module-utils/2.7.1_9b4da09afe85443cfe3fd6a9c3b0cb36:
     resolution: {integrity: sha512-fjoetBXQZq2tSTWZ9yWVl2KuFrTZZH3V+9iD1V1RfpDgxzJR+mPd/KZmMiA8gbPqdBzpNiEHOuT7IYEWxrH0zQ==}
     engines: {node: '>=4'}
+    peerDependencies:
+      '@typescript-eslint/parser': '*'
+      eslint-import-resolver-node: '*'
+      eslint-import-resolver-typescript: '*'
+      eslint-import-resolver-webpack: '*'
+    peerDependenciesMeta:
+      '@typescript-eslint/parser':
+        optional: true
+      eslint-import-resolver-node:
+        optional: true
+      eslint-import-resolver-typescript:
+        optional: true
+      eslint-import-resolver-webpack:
+        optional: true
     dependencies:
+      '@typescript-eslint/parser': 4.33.0_eslint@7.32.0+typescript@4.5.5
       debug: 3.2.7
+      eslint-import-resolver-node: 0.3.6
+      eslint-import-resolver-typescript: 2.5.0_a820dc868cc8cd66d8297be6779b9035
       find-up: 2.1.0
       pkg-dir: 2.0.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /eslint-plugin-es/3.0.1_eslint@7.32.0:
@@ -5146,19 +5180,24 @@ packages:
       ignore: 5.1.9
     dev: true
 
-  /eslint-plugin-import/2.25.3_eslint@7.32.0:
+  /eslint-plugin-import/2.25.3_6e5a0ae109fa60d42ced239ed78f4f8c:
     resolution: {integrity: sha512-RzAVbby+72IB3iOEL8clzPLzL3wpDrlwjsTBAQXgyp5SeTqqY+0bFubwuo+y/HLhNZcXV4XqTBO4LGsfyHIDXg==}
     engines: {node: '>=4'}
     peerDependencies:
+      '@typescript-eslint/parser': '*'
       eslint: ^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8
+    peerDependenciesMeta:
+      '@typescript-eslint/parser':
+        optional: true
     dependencies:
+      '@typescript-eslint/parser': 4.33.0_eslint@7.32.0+typescript@4.5.5
       array-includes: 3.1.4
       array.prototype.flat: 1.2.5
       debug: 2.6.9
       doctrine: 2.1.0
       eslint: 7.32.0
       eslint-import-resolver-node: 0.3.6
-      eslint-module-utils: 2.7.1
+      eslint-module-utils: 2.7.1_9b4da09afe85443cfe3fd6a9c3b0cb36
       has: 1.0.3
       is-core-module: 2.8.0
       is-glob: 4.0.3
@@ -5166,6 +5205,10 @@ packages:
       object.values: 1.1.5
       resolve: 1.20.0
       tsconfig-paths: 3.12.0
+    transitivePeerDependencies:
+      - eslint-import-resolver-typescript
+      - eslint-import-resolver-webpack
+      - supports-color
     dev: true
 
   /eslint-plugin-jest/25.3.0_761f1f7d04e47250dd10440d6d743e68:
@@ -6614,7 +6657,7 @@ packages:
     dev: true
 
   /is-plain-obj/1.1.0:
-    resolution: {integrity: sha1-caUMhCnfync8kqOQpKA7OfzVHT4=}
+    resolution: {integrity: sha512-yvkRyxmFKEOQ4pNXCmJG5AEQNlXJS5LaONXo5/cLdTZdWvsZ1ioJEonLGAosKlMWE8lwUy/bJzMjcw8az73+Fg==}
     engines: {node: '>=0.10.0'}
     dev: true
 
@@ -9159,7 +9202,7 @@ packages:
       hast-util-whitespace: 2.0.0
       html-whitespace-sensitive-tag-names: 2.0.0
       rehype-minify-whitespace: 5.0.0
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit-parents: 5.1.0
     dev: false
 
@@ -9170,7 +9213,7 @@ packages:
       hast-util-has-property: 2.0.0
       hast-util-is-element: 2.1.2
       hast-util-is-event-handler: 2.0.0
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9182,7 +9225,7 @@ packages:
       hast-util-from-string: 2.0.0
       hast-util-is-css-style: 2.0.0
       hast-util-to-string: 2.0.0
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9195,7 +9238,7 @@ packages:
       html-enumerated-attributes: 0.1.0
       property-information: 6.1.1
       space-separated-tokens: 2.0.1
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9206,7 +9249,7 @@ packages:
       hast-util-has-property: 2.0.0
       hast-util-is-event-handler: 2.0.0
       uglify-js: 3.14.4
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9219,7 +9262,7 @@ packages:
       hast-util-is-javascript: 2.0.0
       hast-util-to-string: 2.0.0
       uglify-js: 3.14.4
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9231,7 +9274,7 @@ packages:
       hast-util-is-element: 2.1.2
       html-url-attributes: 2.0.0
       uglify-js: 3.14.4
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9242,7 +9285,7 @@ packages:
       hast-util-from-string: 2.0.0
       hast-util-is-element: 2.1.2
       hast-util-to-string: 2.0.0
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9252,7 +9295,7 @@ packages:
       '@types/hast': 2.3.4
       bcp-47-normalize: 2.0.2
       hast-util-has-property: 2.0.0
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9262,7 +9305,7 @@ packages:
       '@types/hast': 2.3.4
       clean-css: 5.2.2
       hast-util-is-element: 2.1.2
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9273,7 +9316,7 @@ packages:
       clean-css: 5.2.2
       hast-util-has-property: 2.0.0
       hast-util-is-element: 2.1.2
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9284,7 +9327,7 @@ packages:
       comma-separated-tokens: 2.0.2
       hast-util-has-property: 2.0.0
       hast-util-is-element: 2.1.2
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9294,7 +9337,7 @@ packages:
       '@types/hast': 2.3.4
       clean-css: 5.2.2
       hast-util-has-property: 2.0.0
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9305,7 +9348,7 @@ packages:
       hast-util-embedded: 2.0.0
       hast-util-is-element: 2.1.2
       hast-util-whitespace: 2.0.0
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-is: 5.1.1
     dev: false
 
@@ -9315,7 +9358,7 @@ packages:
       '@types/hast': 2.3.4
       hast-util-has-property: 2.0.0
       hast-util-is-element: 2.1.2
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9325,7 +9368,7 @@ packages:
       '@types/hast': 2.3.4
       hast-util-from-parse5: 7.1.0
       parse5: 6.0.1
-      unified: 10.1.1
+      unified: 10.1.2
     dev: false
 
   /rehype-preset-minify/6.0.0:
@@ -9361,7 +9404,7 @@ packages:
     dependencies:
       '@types/hast': 2.3.4
       hast-util-is-conditional-comment: 2.0.0
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-filter: 4.0.0
     dev: false
 
@@ -9370,7 +9413,7 @@ packages:
     dependencies:
       '@types/hast': 2.3.4
       hast-util-is-element: 2.1.2
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9380,7 +9423,7 @@ packages:
       '@types/hast': 2.3.4
       hast-util-is-element: 2.1.2
       hast-util-is-event-handler: 2.0.0
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9390,7 +9433,7 @@ packages:
       '@types/hast': 2.3.4
       hast-util-has-property: 2.0.0
       hast-util-is-javascript: 2.0.0
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9399,7 +9442,7 @@ packages:
     dependencies:
       hast-util-has-property: 2.0.0
       space-separated-tokens: 2.0.1
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9408,7 +9451,7 @@ packages:
     dependencies:
       '@types/hast': 2.3.4
       hast-util-is-javascript: 2.0.0
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9418,7 +9461,7 @@ packages:
       '@types/hast': 2.3.4
       hast-util-is-css-link: 2.0.0
       hast-util-is-css-style: 2.0.0
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9427,7 +9470,7 @@ packages:
     dependencies:
       '@types/hast': 2.3.4
       hast-util-is-element: 2.1.2
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9435,7 +9478,7 @@ packages:
     resolution: {integrity: sha512-sCT58e12F+fJL8ZmvpEP2vAK7cpYffUAf0cMQjNfLIewWjMHMGo0Io+H8eztJoI1S9dvEm2XZT5zzchqe8gYJw==}
     dependencies:
       '@types/hast': 2.3.4
-      unified: 10.1.1
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 
@@ -9444,7 +9487,7 @@ packages:
     dependencies:
       '@types/hast': 2.3.4
       hast-util-to-html: 8.0.3
-      unified: 10.1.1
+      unified: 10.1.2
     dev: false
 
   /remark-lint-blockquote-indentation/2.0.1:
@@ -10222,8 +10265,6 @@ packages:
       rollup: 2.60.2
       serialize-javascript: 4.0.0
       terser: 5.10.0
-    transitivePeerDependencies:
-      - acorn
     dev: true
 
   /rollup-plugin-vue-jsx-compat/0.0.6:
@@ -10789,12 +10830,11 @@ packages:
     resolution: {integrity: sha512-AMmF99DMfEDiRJfxfY5jj5wNH/bYO09cniSqhfoyxc8sFoYIgkJy86G04UoZU5VjlpnplVu0K6Tx6E9b5+DlHA==}
     engines: {node: '>=10'}
     hasBin: true
-    peerDependencies:
-      acorn: ^8.5.0
     peerDependenciesMeta:
       acorn:
         optional: true
     dependencies:
+      acorn: 8.6.0
       commander: 2.20.3
       source-map: 0.7.3
       source-map-support: 0.5.21
@@ -11160,12 +11200,12 @@ packages:
   /unified-stream/2.0.0:
     resolution: {integrity: sha512-KdwODjgqGsTbHMLqm57qLxNAkbCboD5EMPC4BULs/9iy5ZTsw3xgc0BUjeCmABt/yfZt0k7rgkBLcdiZ8LwZug==}
     dependencies:
-      unified: 10.1.1
+      unified: 10.1.2
       vfile: 5.2.0
     dev: false
 
-  /unified/10.1.1:
-    resolution: {integrity: sha512-v4ky1+6BN9X3pQrOdkFIPWAaeDsHPE1svRDxq7YpTc2plkIqFMwukfqM+l0ewpP9EfwARlt9pPFAeWYhHm8X9w==}
+  /unified/10.1.2:
+    resolution: {integrity: sha512-pUSWAi/RAnVy1Pif2kAoeWNBa3JVrx0MId2LASj8G+7AiHWoKZNTomq6LG326T68U7/e263X6fTdcXIy7XnF7Q==}
     dependencies:
       '@types/unist': 2.0.6
       bail: 2.0.2
