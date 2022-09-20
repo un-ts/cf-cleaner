@@ -1,9 +1,3 @@
 {
-  "extends": "@1stg/tsconfig/lib",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "cf-cleaner": ["src"]
-    }
-  }
+  "extends": "@1stg/tsconfig/node16"
 }

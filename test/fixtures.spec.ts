@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { URL } from 'node:url'
 
-import { cleaner } from 'cf-cleaner'
+import { cleaner } from '../src/index.js'
 
 describe('fixtures', () => {
   const __dirname = path.dirname(new URL(import.meta.url).pathname)

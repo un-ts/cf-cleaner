@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`fixtures basic.html should work as expected 1`] = `
+exports[`fixtures > basic.html should work as expected 1`] = `
 "
 <div class=\\"alert alert-tip\\">
   <div class=\\"alert-body\\">

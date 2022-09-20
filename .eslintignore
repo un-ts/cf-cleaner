@@ -2,4 +2,5 @@ coverage
 lib
 test/fixtures
 CHANGELOG.md
+/auto-imports.d.ts
 !/.*.js
