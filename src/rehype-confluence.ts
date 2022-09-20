@@ -1,4 +1,4 @@
-import type { Element, Root } from 'hast'
+import type { Element, Root, ElementContent } from 'hast'
 import { isElement } from 'hast-util-is-element'
 import { remove } from 'unist-util-remove'
 import { visit } from 'unist-util-visit'
@@ -15,6 +15,21 @@ const CLASSNAME_MAPPER = {
   confluenceTh: 'border-th',
 }
 
+/**
+ * remove jira element
+ * @param node
+ * @returns boolean
+ */
+export function isJiraElement(node: Element | ElementContent): boolean {
+  if (node.type === 'text') {
+    return node.value.includes('Jira')
+  }
+  if (node.type === 'element' && node.children.length > 0) {
+    return node.children.some(n => isJiraElement(n))
+  }
+  return false
+}
+
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export const rehypeConfluence = () => (root: Root) => {
   remove(
@@ -22,6 +37,7 @@ export const rehypeConfluence = () => (root: Root) => {
     node =>
       isElement(node) &&
       (['style', 'script'].includes(node.tagName) ||
+        isJiraElement(node) ||
         (node.properties?.className as string[] | undefined)?.some(className =>
           [
             'aui-icon',
