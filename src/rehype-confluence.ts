@@ -75,6 +75,7 @@ export const rehypeConfluence = () => (root: Root) => {
           }
           case 'dataSyntaxhighlighterParams': {
             const params = properties[key] as string
+            // eslint-disable-next-line regexp/no-super-linear-backtracking
             const matched = /brush:\s*([^;]+);/.exec(params)
             const lang = matched?.[1]
             if (lang) {

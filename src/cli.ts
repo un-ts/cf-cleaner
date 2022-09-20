@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import fs from 'fs'
-import path from 'path'
-import { Readable } from 'stream'
-import { URL } from 'url'
+import fs from 'node:fs'
+import path from 'node:path'
+import { Readable } from 'node:stream'
+import { URL } from 'node:url'
 
 import { program } from 'commander'
 
