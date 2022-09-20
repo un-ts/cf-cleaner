@@ -2,10 +2,11 @@
   "name": "cf-cleaner",
   "version": "0.0.4",
   "type": "module",
-  "description": "Cleanup Confluence HTML via rehype.",
-  "repository": "git+https://github.com/rx-ts/cf-cleaner.git",
+  "description": "Cleanup Confluence HTML via rehype",
+  "repository": "git+https://github.com/un-ts/cf-cleaner.git",
   "author": "JounQin <admin@1stg.me>",
   "license": "MIT",
+  "packageManager": "pnpm@7.12.1",
   "engines": {
     "node": ">=14.18.0"
   },

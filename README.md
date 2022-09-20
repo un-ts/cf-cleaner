@@ -1,15 +1,11 @@
 # cf-cleaner
 
-[![GitHub Actions](https://github.com/rx-ts/cf-cleaner/workflows/CI/badge.svg)](https://github.com/rx-ts/cf-cleaner/actions/workflows/ci.yml)
-[![Codecov](https://img.shields.io/codecov/c/github/rx-ts/cf-cleaner.svg)](https://codecov.io/gh/rx-ts/cf-cleaner)
-[![Codacy Grade](https://img.shields.io/codacy/grade/cd5444616bd74d239bead24def4b9e72)](https://www.codacy.com/gh/rx-ts/cf-cleaner)
-[![type-coverage](https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Frx-ts%2Fcf-cleaner%2Fmain%2Fpackage.json)](https://github.com/plantain-00/type-coverage)
+[![GitHub Actions](https://github.com/un-ts/cf-cleaner/workflows/CI/badge.svg)](https://github.com/un-ts/cf-cleaner/actions/workflows/ci.yml)
+[![Codecov](https://img.shields.io/codecov/c/github/un-ts/cf-cleaner.svg)](https://codecov.io/gh/un-ts/cf-cleaner)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/un-ts/cf-cleaner.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/un-ts/cf-cleaner/context:javascript)
+[![type-coverage](https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fun-ts%2Fcf-cleaner%2Fmain%2Fpackage.json)](https://github.com/plantain-00/type-coverage)
 [![npm](https://img.shields.io/npm/v/cf-cleaner.svg)](https://www.npmjs.com/package/cf-cleaner)
-[![GitHub Release](https://img.shields.io/github/release/rx-ts/cf-cleaner)](https://github.com/rx-ts/cf-cleaner/releases)
-
-[![David Peer](https://img.shields.io/david/peer/rx-ts/cf-cleaner.svg)](https://david-dm.org/rx-ts/cf-cleaner?type=peer)
-[![David](https://img.shields.io/david/rx-ts/cf-cleaner.svg)](https://david-dm.org/rx-ts/cf-cleaner)
-[![David Dev](https://img.shields.io/david/dev/rx-ts/cf-cleaner.svg)](https://david-dm.org/rx-ts/cf-cleaner?type=dev)
+[![GitHub Release](https://img.shields.io/github/release/un-ts/cf-cleaner)](https://github.com/un-ts/cf-cleaner/releases)
 
 [![Conventional Commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com)
@@ -17,7 +13,7 @@
 [![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![changesets](https://img.shields.io/badge/maintained%20with-changesets-176de3.svg)](https://github.com/atlassian/changesets)
 
-Transform from confluence flavored HTML to Markdown with enhanced features.
+Cleanup Confluence HTML via rehype
 
 ## TOC <!-- omit in toc -->
 
