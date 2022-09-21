@@ -1,4 +1,4 @@
-import type { Element, Root } from 'hast'
+import type { Element, Root, ElementContent } from 'hast'
 import { isElement } from 'hast-util-is-element'
 import { remove } from 'unist-util-remove'
 import { visit } from 'unist-util-visit'
@@ -15,22 +15,37 @@ const CLASSNAME_MAPPER = {
   confluenceTh: 'border-th',
 }
 
+/**
+ * remove jira element
+ */
+export function isJiraElement(
+  node: Element | ElementContent,
+): boolean | undefined {
+  if (node.type === 'text') {
+    return /\bjira\b/i.test(node.value)
+  }
+  if (node.type === 'element') {
+    return node.children.some(n => isJiraElement(n))
+  }
+}
+
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export const rehypeConfluence = () => (root: Root) => {
-  remove(
-    root,
-    node =>
-      isElement(node) &&
-      (['style', 'script'].includes(node.tagName) ||
-        (node.properties?.className as string[] | undefined)?.some(className =>
-          [
-            'aui-icon',
-            'hide-border-bottom',
-            'hidden',
-            'toc-empty-item',
-          ].includes(className),
-        )),
-  )
+  remove(root, node => {
+    if (!isElement(node)) {
+      return false
+    }
+    const className = node.properties?.className as string[] | undefined
+    return (
+      ['style', 'script'].includes(node.tagName) ||
+      isJiraElement(node) ||
+      className?.some(className =>
+        ['aui-icon', 'hide-border-bottom', 'hidden', 'toc-empty-item'].includes(
+          className,
+        ),
+      )
+    )
+  })
 
   remove(root, node => {
     if (isElement(node, 'p')) {

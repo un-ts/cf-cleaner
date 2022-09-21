@@ -1,0 +1,12 @@
+
+<div>Ajira-name</div>
+<h2 id="calico集群解析问题-问题概述">问题概述</h2>
+<p>calico集群解析问题</p>
+<h2 id="calico集群解析问题-诊断步骤">诊断步骤</h2>
+<p>1、多网卡场景下，需要给calico指定网卡信息</p>
+<h2 id="calico集群解析问题-解决方案">解决方案</h2>
+<p>1、修改calico-node的yaml，添加环境变量</p>
+<p>kubectl -n kube-system edit ds calico-node</p>
+<ul>
+  <li>name: IP_AUTODETECTION_METHOD<br>value: interface=eth0</li>
+</ul>
