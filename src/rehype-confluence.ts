@@ -15,9 +15,6 @@ const CLASSNAME_MAPPER = {
   confluenceTh: 'border-th',
 }
 
-/**
- * remove jira element
- */
 export function isJiraElement(
   node: Element | ElementContent,
 ): boolean | undefined {
@@ -25,7 +22,7 @@ export function isJiraElement(
     return /\bjira\b/i.test(node.value)
   }
   if (node.type === 'element') {
-    return node.children.some(n => isJiraElement(n))
+    return node.children.some(isJiraElement)
   }
 }
 
@@ -33,7 +30,7 @@ export function isJiraElement(
 export const rehypeConfluence = () => (root: Root) => {
   remove(root, node => {
     if (!isElement(node)) {
-      return false
+      return
     }
     const className = node.properties?.className as string[] | undefined
     return (
@@ -48,15 +45,15 @@ export const rehypeConfluence = () => (root: Root) => {
   })
 
   remove(root, node => {
-    if (isElement(node, 'p')) {
-      return node.children.every(item => {
-        if (item.type === 'text') {
-          return !item.value.trim()
-        }
-
-        return isElement(item, 'br')
-      })
+    if (!isElement(node, 'p')) {
+      return
     }
+    return node.children.every(item => {
+      if (item.type === 'text') {
+        return !item.value.trim()
+      }
+      return isElement(item, 'br')
+    })
   })
 
   visit(
