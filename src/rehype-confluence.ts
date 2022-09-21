@@ -18,14 +18,15 @@ const CLASSNAME_MAPPER = {
 /**
  * remove jira element
  */
-export function isJiraElement(node: Element | ElementContent): boolean {
+export function isJiraElement(
+  node: Element | ElementContent,
+): boolean | undefined {
   if (node.type === 'text') {
-    return node.value.toLowerCase().includes('jira')
+    return /\bjira\b/i.test(node.value)
   }
   if (node.type === 'element') {
     return node.children.some(n => isJiraElement(n))
   }
-  return false
 }
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
