@@ -1,5 +1,5 @@
 ---
-'cf-cleaner': patch
+'cf-cleaner': minor
 ---
 
-feat remove jira element
+feat: remove jira element
