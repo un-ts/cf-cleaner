@@ -1,5 +1,11 @@
 # cf-cleaner
 
+## 0.1.0
+
+### Minor Changes
+
+- [#24](https://github.com/un-ts/cf-cleaner/pull/24) [`6367de5`](https://github.com/un-ts/cf-cleaner/commit/6367de5cdafa010342cd3e12add67bad251bb8b2) Thanks [@zChanges](https://github.com/zChanges)! - feat: remove jira element
+
 ## 0.0.4
 
 ### Patch Changes
