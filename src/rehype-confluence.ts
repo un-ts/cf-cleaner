@@ -17,12 +17,10 @@ const CLASSNAME_MAPPER = {
 
 /**
  * remove jira element
- * @param node
- * @returns boolean
  */
 export function isJiraElement(node: Element | ElementContent): boolean {
   if (node.type === 'text') {
-    return node.value.includes('Jira')
+    return node.value.toLocaleLowerCase().includes('jira')
   }
   if (node.type === 'element' && node.children.length > 0) {
     return node.children.some(n => isJiraElement(n))
@@ -32,21 +30,24 @@ export function isJiraElement(node: Element | ElementContent): boolean {
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export const rehypeConfluence = () => (root: Root) => {
-  remove(
-    root,
-    node =>
-      isElement(node) &&
-      (['style', 'script'].includes(node.tagName) ||
+  remove(root, node => {
+    if (isElement(node)) {
+      const className = node.properties?.className as string[] | undefined
+      return (
+        ['style', 'script'].includes(node.tagName) ||
         isJiraElement(node) ||
-        (node.properties?.className as string[] | undefined)?.some(className =>
+        className?.some(className =>
           [
             'aui-icon',
             'hide-border-bottom',
             'hidden',
             'toc-empty-item',
           ].includes(className),
-        )),
-  )
+        )
+      )
+    }
+    return false
+  })
 
   remove(root, node => {
     if (isElement(node, 'p')) {
