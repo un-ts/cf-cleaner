@@ -20,9 +20,9 @@ const CLASSNAME_MAPPER = {
  */
 export function isJiraElement(node: Element | ElementContent): boolean {
   if (node.type === 'text') {
-    return node.value.toLocaleLowerCase().includes('jira')
+    return node.value.toLowerCase().includes('jira')
   }
-  if (node.type === 'element' && node.children.length > 0) {
+  if (node.type === 'element') {
     return node.children.some(n => isJiraElement(n))
   }
   return false
@@ -31,22 +31,19 @@ export function isJiraElement(node: Element | ElementContent): boolean {
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export const rehypeConfluence = () => (root: Root) => {
   remove(root, node => {
-    if (isElement(node)) {
-      const className = node.properties?.className as string[] | undefined
-      return (
-        ['style', 'script'].includes(node.tagName) ||
-        isJiraElement(node) ||
-        className?.some(className =>
-          [
-            'aui-icon',
-            'hide-border-bottom',
-            'hidden',
-            'toc-empty-item',
-          ].includes(className),
-        )
-      )
+    if (!isElement(node)) {
+      return false
     }
-    return false
+    const className = node.properties?.className as string[] | undefined
+    return (
+      ['style', 'script'].includes(node.tagName) ||
+      isJiraElement(node) ||
+      className?.some(className =>
+        ['aui-icon', 'hide-border-bottom', 'hidden', 'toc-empty-item'].includes(
+          className,
+        ),
+      )
+    )
   })
 
   remove(root, node => {
