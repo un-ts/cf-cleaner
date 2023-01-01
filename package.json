@@ -42,7 +42,7 @@
     "typecov": "type-coverage"
   },
   "dependencies": {
-    "commander": "^9.4.0",
+    "commander": "^9.4.1",
     "hast-util-is-element": "^2.1.2",
     "rehype-format": "^4.0.1",
     "rehype-parse": "^8.0.4",
