@@ -51,7 +51,7 @@
     "unified": "^10.1.2",
     "unified-stream": "^2.0.0",
     "unist-util-remove": "^3.1.1",
-    "unist-util-visit": "^4.1.1"
+    "unist-util-visit": "^4.1.2"
   },
   "devDependencies": {
     "@1stg/lib-config": "^10.3.0",
