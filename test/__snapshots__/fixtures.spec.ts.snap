@@ -4,19 +4,19 @@ exports[`fixtures > basic.html should work as expected 1`] = `
 "
 <div class=\\"alert alert-tip\\">
   <div class=\\"alert-body\\">
-    <p><strong>适用版本：<span style=\\"color: rgb(255,0,0);\\">3.4.x、3.5.x、3.6.x</span></strong></p>
+    <p><strong>适用版本：<span>3.4.x、3.5.x、3.6.x</span></strong></p>
     <p><strong>关键词：告警、流量告警、微服务</strong></p>
   </div>
 </div>
 <div class=\\"toc\\"></div>
 <h2 id=\\"id-如何为微服务设置流量告警-文档目的\\">文档目的</h2>
-<p>目前，Service Mesh 平台已提供了<span style=\\"color: rgb(0,0,0);\\">较为完整的微服务流量监控数据，若基于已有监控数据实现告警、通知，则可通过自动化运维帮助用户降低服务故障风险，提升服务运维效率。</span></p>
-<p><span style=\\"color: rgb(0,0,0);\\">本文将为您介绍，如何基于微服务流量监控数据配置告警、通知，实现微服务自动化运维。</span></p>
+<p>目前，Service Mesh 平台已提供了<span>较为完整的微服务流量监控数据，若基于已有监控数据实现告警、通知，则可通过自动化运维帮助用户降低服务故障风险，提升服务运维效率。</span></p>
+<p><span>本文将为您介绍，如何基于微服务流量监控数据配置告警、通知，实现微服务自动化运维。</span></p>
 <h2 id=\\"id-如何为微服务设置流量告警-方案概述\\">方案概述</h2>
 <p><strong>提示</strong>：全栈云原生开放平台 v3.7.0 开始，已在产品功能支持微服务流量告警。</p>
 <p>本方案基于 Service Mesh 平台的微服务流量监控指标（自定义表达式），结合容器平台或运维中心的告警、通知功能，为 Service Mesh 平台中微服务关联的 <strong>部署（Deployment）</strong>资源创建告警策略。当流量监控数据满足告警触发条件时，即可自动触发告警并发送通知，为您提供微服务自动化运维能力。</p>
 <h2 id=\\"id-如何为微服务设置流量告警-前提条件\\">前提条件</h2>
-<p><span style=\\"color: rgb(34,34,34);\\">微服务关联的部署所在的集群已部署了监控组件，且监控组件运行正常。</span></p>
+<p><span>微服务关联的部署所在的集群已部署了监控组件，且监控组件运行正常。</span></p>
 <h2 id=\\"id-如何为微服务设置流量告警-准备工作\\">准备工作</h2>
 <ul>
   <li>如需向指定用户发送微服务流量告警通知，请提前在平台的运维中心（需要平台管理相关权限）创建好通知策略。详细的操作步骤，请参考平台中心的 <strong>帮助文档</strong> > <strong>用户手册 </strong>><strong> 运维中心 </strong>><strong> 通知 </strong>章节。</li>
@@ -51,10 +51,10 @@ exports[`fixtures > basic.html should work as expected 1`] = `
 </ol>
 <h2 id=\\"id-如何为微服务设置流量告警-参考信息\\">参考信息</h2>
 <h3 id=\\"id-如何为微服务设置流量告警-自定义表达式\\">自定义表达式</h3>
-<p><span style=\\"color: rgb(23,43,77);\\">不同框架的微服务，设置告警时的自定义表达式不同，以下表达式分别适用于 </span><span style=\\"color: rgb(23,43,77);\\">Service Mesh 服务和 Spring Cloud 服务。使用时，</span><span style=\\"color: rgb(23,43,77);\\">请根据实际的微服务类型选择对应的表达式。</span></p>
+<p><span>不同框架的微服务，设置告警时的自定义表达式不同，以下表达式分别适用于 </span><span>Service Mesh 服务和 Spring Cloud 服务。使用时，</span><span>请根据实际的微服务类型选择对应的表达式。</span></p>
 <p><strong>说明</strong>：</p>
 <ul>
-  <li>表达式中 [] 中内容为聚合时间，<span style=\\"color: rgb(23,43,77);\\">可以根据实际情况修改，例如：[2m]。</span></li>
+  <li>表达式中 [] 中内容为聚合时间，<span>可以根据实际情况修改，例如：[2m]。</span></li>
   <li>
     <p>表达式中 {} 中内容为变量，必须根据实际<span>情况修改，详细说明参见下表。<br></span></p>
     <div>
@@ -121,13 +121,13 @@ histogram_quantile({tp-value}, sum(rate(http_server_requests_seconds_bucket{clie
 <div>
   <table>
     <colgroup>
-      <col style=\\"width: 7.95169%;\\">
-      <col style=\\"width: 39.7418%;\\">
-      <col style=\\"width: 21.3377%;\\">
-      <col style=\\"width: 5.69728%;\\">
-      <col style=\\"width: 8.537%;\\">
-      <col style=\\"width: 8.53462%;\\">
-      <col style=\\"width: 8.29074%;\\">
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
     </colgroup>
     <tbody>
       <tr>
@@ -135,65 +135,65 @@ histogram_quantile({tp-value}, sum(rate(http_server_requests_seconds_bucket{clie
         <th colspan=\\"1\\" class=\\"border-th\\">说明</th>
         <th class=\\"border-th\\">指标数值要求</th>
         <th class=\\"border-th\\">单位</th>
-        <th colspan=\\"1\\" class=\\"border-th\\"><span style=\\"color: rgb(23,43,77);\\">聚合时间(统计周期)</span></th>
+        <th colspan=\\"1\\" class=\\"border-th\\"><span>聚合时间(统计周期)</span></th>
         <th colspan=\\"1\\" class=\\"border-th\\">触发持续时间</th>
-        <th colspan=\\"1\\" class=\\"border-th\\"><span style=\\"color: rgb(23,43,77);\\">告警等级(告警频率)</span></th>
+        <th colspan=\\"1\\" class=\\"border-th\\"><span>告警等级(告警频率)</span></th>
       </tr>
       <tr>
-        <td colspan=\\"1\\" class=\\"border-td\\"><span style=\\"color: rgb(23,43,77);\\">TP50 响应时间</span></td>
-        <td colspan=\\"1\\" class=\\"border-td\\"><span style=\\"color: rgb(23,43,77);\\">将某个时间段内请求按照响应时间从小到大排列，第 (请求总数*50%) 次请求的响应时间即为 TP50 响应时间。</span></td>
+        <td colspan=\\"1\\" class=\\"border-td\\"><span>TP50 响应时间</span></td>
+        <td colspan=\\"1\\" class=\\"border-td\\"><span>将某个时间段内请求按照响应时间从小到大排列，第 (请求总数*50%) 次请求的响应时间即为 TP50 响应时间。</span></td>
         <td rowspan=\\"3\\" class=\\"border-td\\">
           <ul>
-            <li><span style=\\"color: rgb(23,43,77);\\">正数</span></li>
-            <li><span style=\\"color: rgb(23,43,77);\\">整数部分 7 位</span></li>
-            <li><span style=\\"color: rgb(23,43,77);\\">小数部分 2 位</span></li>
+            <li><span>正数</span></li>
+            <li><span>整数部分 7 位</span></li>
+            <li><span>小数部分 2 位</span></li>
           </ul>
         </td>
         <td rowspan=\\"3\\" class=\\"border-td\\">
           <p>毫秒（ms）<br><br></p>
         </td>
         <td rowspan=\\"5\\" class=\\"border-td\\">
-          <p><span style=\\"color: rgb(23,43,77);\\">1分钟...、30分钟</span></p>
+          <p><span>1分钟...、30分钟</span></p>
         </td>
         <td rowspan=\\"5\\" class=\\"border-td\\">
           <p>1-10 个周期</p>
         </td>
         <td rowspan=\\"5\\" class=\\"border-td\\">
           <ul>
-            <li><span style=\\"color: rgb(23,43,77);\\">灾难</span></li>
-            <li><span style=\\"color: rgb(23,43,77);\\">严重</span></li>
-            <li><span style=\\"color: rgb(23,43,77);\\">警告</span></li>
-            <li><span style=\\"color: rgb(23,43,77);\\">提示</span></li>
+            <li><span>灾难</span></li>
+            <li><span>严重</span></li>
+            <li><span>警告</span></li>
+            <li><span>提示</span></li>
           </ul>
         </td>
       </tr>
       <tr>
-        <td class=\\"border-td\\"><span style=\\"color: rgb(23,43,77);\\">TP90 响应时间</span></td>
-        <td colspan=\\"1\\" class=\\"border-td\\"><span style=\\"color: rgb(23,43,77);\\">将某个时间段内请求按照响应时间从小到大排列，第 (请求总数*90%) 次请求的响应时间即为 TP90 响应时间。</span></td>
+        <td class=\\"border-td\\"><span>TP90 响应时间</span></td>
+        <td colspan=\\"1\\" class=\\"border-td\\"><span>将某个时间段内请求按照响应时间从小到大排列，第 (请求总数*90%) 次请求的响应时间即为 TP90 响应时间。</span></td>
       </tr>
       <tr>
-        <td class=\\"border-td\\"><span style=\\"color: rgb(23,43,77);\\">TP95 响应时间</span></td>
-        <td colspan=\\"1\\" class=\\"border-td\\"><span style=\\"color: rgb(23,43,77);\\">将某个时间段内请求按照响应时间从小到大排列，第 (请求总数*95%) 次请求的响应时间即为 TP95 响应时间。</span></td>
+        <td class=\\"border-td\\"><span>TP95 响应时间</span></td>
+        <td colspan=\\"1\\" class=\\"border-td\\"><span>将某个时间段内请求按照响应时间从小到大排列，第 (请求总数*95%) 次请求的响应时间即为 TP95 响应时间。</span></td>
       </tr>
       <tr>
-        <td class=\\"border-td\\"><span style=\\"color: rgb(23,43,77);\\">传入请求数</span></td>
-        <td colspan=\\"1\\" class=\\"border-td\\"><span style=\\"color: rgb(23,43,77);\\">服务作为被调方接收请求，处理的请求总数。</span></td>
+        <td class=\\"border-td\\"><span>传入请求数</span></td>
+        <td colspan=\\"1\\" class=\\"border-td\\"><span>服务作为被调方接收请求，处理的请求总数。</span></td>
         <td class=\\"border-td\\">
           <ul>
-            <li><span style=\\"color: rgb(23,43,77);\\">正整数</span></li>
-            <li><span style=\\"color: rgb(23,43,77);\\">整数部分 17 位</span></li>
+            <li><span>正整数</span></li>
+            <li><span>整数部分 17 位</span></li>
           </ul>
         </td>
         <td class=\\"border-td\\">个</td>
       </tr>
       <tr>
-        <td class=\\"border-td\\"><span style=\\"color: rgb(23,43,77);\\">传入请求错误率</span></td>
-        <td colspan=\\"1\\" class=\\"border-td\\"><span style=\\"color: rgb(23,43,77);\\">服务作为被调方接收请求，一段持续的时间段内，错误请求数占时间段内请求数的比率。</span></td>
+        <td class=\\"border-td\\"><span>传入请求错误率</span></td>
+        <td colspan=\\"1\\" class=\\"border-td\\"><span>服务作为被调方接收请求，一段持续的时间段内，错误请求数占时间段内请求数的比率。</span></td>
         <td class=\\"border-td\\">
           <ul>
-            <li><span style=\\"color: rgb(23,43,77);\\">正数</span></li>
-            <li><span style=\\"color: rgb(23,43,77);\\">整数部分 7 位</span></li>
-            <li><span style=\\"color: rgb(23,43,77);\\">小数部分 2 位</span></li>
+            <li><span>正数</span></li>
+            <li><span>整数部分 7 位</span></li>
+            <li><span>小数部分 2 位</span></li>
           </ul>
         </td>
         <td class=\\"border-td\\">
@@ -219,5 +219,24 @@ exports[`fixtures > jira.html should work as expected 1`] = `
 <ul>
   <li>name: IP_AUTODETECTION_METHOD<br>value: interface=eth0</li>
 </ul>
+"
+`;
+
+exports[`fixtures > releaseNote.html should work as expected 1`] = `
+"
+<div>
+  <div>
+    <table>
+      <tbody>
+        <tr>
+          <td><a href=\\"https://jira.alauda.cn/browse/DEVOPS-26378?src=confmacro\\">删除已部署的高可用harbor实例，Harbor使用的Redis实例没有被同步删除</a></td>
+        </tr>
+        <tr>
+          <td><a href=\\"https://jira.alauda.cn/browse/DEVOPS-26649?src=confmacro\\">创建流水线Git Clone任务中使用域名emplate.gitee.cn包含.git字符，导致仓库名错误，流水线执行失败</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 "
 `;
