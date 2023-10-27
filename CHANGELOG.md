@@ -1,5 +1,11 @@
 # cf-cleaner
 
+## 0.2.0
+
+### Minor Changes
+
+- [`719fd71`](https://github.com/un-ts/cf-cleaner/commit/719fd71cc8010c89c4eb3da0cf1f682d2d4b139a) Thanks [@HongwuQz](https://github.com/HongwuQz)! - feat: remove jira filter table's button
+
 ## 0.1.0
 
 ### Minor Changes
