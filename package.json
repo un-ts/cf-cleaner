@@ -6,7 +6,7 @@
   "repository": "git+https://github.com/un-ts/cf-cleaner.git",
   "author": "JounQin <admin@1stg.me>",
   "license": "MIT",
-  "packageManager": "pnpm@7.12.2",
+  "packageManager": "pnpm@7.33.6",
   "engines": {
     "node": ">=14.18.0"
   },
