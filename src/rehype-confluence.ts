@@ -15,11 +15,15 @@ const CLASSNAME_MAPPER = {
   confluenceTh: 'border-th',
 }
 
+export function containsJira(text: string) {
+  return /\bjira\b/i.test(text)
+}
+
 export function isJiraElement(
   node: Element | ElementContent,
 ): boolean | undefined {
   if (node.type === 'text') {
-    return /\bjira\b/i.test(node.value)
+    return containsJira(node.value)
   }
   if (node.type === 'element') {
     return node.children.some(isJiraElement)
@@ -37,15 +41,20 @@ export const rehypeConfluence = () => (root: Root) => {
       ['style', 'script'].includes(node.tagName) ||
       isJiraElement(node) ||
       className?.some(className =>
-        ['aui-icon', 'hide-border-bottom', 'hidden', 'toc-empty-item'].includes(
-          className,
-        ),
+        [
+          'aui-icon',
+          'hide-border-bottom',
+          'hidden',
+          'jira-tablesorter-header',
+          'refresh-issues-bottom',
+          'toc-empty-item',
+        ].includes(className),
       )
     )
   })
 
   remove(root, node => {
-    if (!isElement(node, 'p')) {
+    if (!isElement(node, 'p') && !isElement(node, 'tr')) {
       return
     }
     return node.children.every(item => {
@@ -80,9 +89,6 @@ export const rehypeConfluence = () => (root: Root) => {
             if (properties.className.length === 0) {
               delete properties.className
             }
-            if (properties.style) {
-              delete properties.style
-            }
             break
           }
           case 'dataSyntaxhighlighterParams': {
@@ -96,8 +102,19 @@ export const rehypeConfluence = () => (root: Root) => {
             delete properties[key]
             break
           }
+          case 'id': {
+            const id = properties.id as string
+            if (containsJira(id) || id.startsWith('refresh-module')) {
+              delete properties.id
+            }
+            break
+          }
           default: {
-            if (key.startsWith('data') || key.startsWith('confluence')) {
+            if (
+              key.startsWith('data') ||
+              key.startsWith('confluence') ||
+              key === 'style'
+            ) {
               delete properties[key]
             }
           }
