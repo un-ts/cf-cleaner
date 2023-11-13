@@ -1,6 +1,7 @@
 .*cache
 .type-coverage
 coverage
+.DS_Store
 lib
 node_modules
 test.*

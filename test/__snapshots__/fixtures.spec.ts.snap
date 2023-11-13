@@ -226,7 +226,7 @@ exports[`fixtures > releaseNote.html should work as expected 1`] = `
 "
 <div>
   <div>
-    <table>
+    <table class=\\"borderless\\">
       <tbody>
         <tr>
           <td><a href=\\"https://jira.alauda.cn/browse/DEVOPS-26378?src=confmacro\\">删除已部署的高可用harbor实例，Harbor使用的Redis实例没有被同步删除</a></td>

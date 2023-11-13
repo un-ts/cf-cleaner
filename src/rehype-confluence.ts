@@ -7,6 +7,7 @@ const CLASSNAME_MAPPER = {
   'toc-macro': 'toc',
   'hide-toolbar': 'expandable',
   'confluence-information-macro': 'alert',
+  aui: 'borderless',
   code: 'code',
   panel: 'panel',
   panelHeader: 'panel-header',
